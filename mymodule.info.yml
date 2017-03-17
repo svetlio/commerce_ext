@@ -1,0 +1,8 @@
+name: My Module
+type: module
+description: 'Custom.'
+package: Custom
+core: 8.x
+dependencies:
+  - taxonomy
+  - commerce_product
