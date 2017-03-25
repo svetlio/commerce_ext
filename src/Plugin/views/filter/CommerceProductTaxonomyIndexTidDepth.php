@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\mymodule\Plugin\views\filter;
+namespace Drupal\commerce_ext\Plugin\views\filter;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\taxonomy\Plugin\views\filter\TaxonomyIndexTid;

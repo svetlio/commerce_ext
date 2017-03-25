@@ -1,6 +1,6 @@
-name: My Module
+name: Commerce ext
 type: module
-description: 'Custom.'
+description: 'Extend some commerce features.'
 package: Custom
 core: 8.x
 dependencies:

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Provides views data for mymodule.module.
+ * Provides views data for commerce_ext.module.
  */
 
 use Drupal\field\FieldStorageConfigInterface;
@@ -10,7 +10,7 @@ use Drupal\field\FieldStorageConfigInterface;
 /**
  * Implements hook_views_data_alter().
  */
-function mymodule_views_data_alter(&$data) {
+function commerce_ext_views_data_alter(&$data) {
   $data['commerce_product_field_data']['term_commerce_product_tid'] = array(
     'title' => t('Taxonomy terms on commerce product'),
     'help' => t('Relate commerce products to taxonomy terms, specifying which vocabulary or vocabularies to use. This relationship will cause duplicated records if there are multiple terms.'),
@@ -61,7 +61,7 @@ function mymodule_views_data_alter(&$data) {
  *
  * @see views_field_default_views_data()
  */
-function mymodule_field_views_data_alter(array &$data, FieldStorageConfigInterface $field_storage) {
+function commerce_ext_field_views_data_alter(array &$data, FieldStorageConfigInterface $field_storage) {
   if ($field_storage->getType() == 'entity_reference' && $field_storage->getSetting('target_type') == 'taxonomy_term') {
     foreach ($data as $table_name => $table_data) {
       foreach ($table_data as $field_name => $field_data) {
@@ -80,7 +80,7 @@ function mymodule_field_views_data_alter(array &$data, FieldStorageConfigInterfa
  *
  * @see \Drupal\views\Plugin\views\argument_validator\Entity
  */
-function mymodule_views_plugins_argument_validator_alter(array &$plugins) {
+function commerce_ext_views_plugins_argument_validator_alter(array &$plugins) {
   $plugins['entity:taxonomy_term']['title'] = t('Taxonomy term ID');
   $plugins['entity:taxonomy_term']['class'] = 'Drupal\taxonomy\Plugin\views\argument_validator\Term';
   $plugins['entity:taxonomy_term']['provider'] = 'taxonomy';

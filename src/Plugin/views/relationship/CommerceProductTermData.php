@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\mymodule\Plugin\views\relationship;
+namespace Drupal\commerce_ext\Plugin\views\relationship;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\taxonomy\VocabularyStorageInterface;

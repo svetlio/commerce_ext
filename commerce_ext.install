@@ -1,6 +1,6 @@
 <?php
 
-function mymodule_schema() {
+function commerce_ext_schema() {
   $schema['taxonomy_index_commerce_product'] = array(
     'description' => 'Maintains denormalized information about commerce_product/term relationships.',
     'fields' => array(

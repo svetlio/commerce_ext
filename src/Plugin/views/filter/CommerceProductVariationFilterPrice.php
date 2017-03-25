@@ -2,10 +2,10 @@
  
 /**
   * @file
-  * Definition of Drupal\mymodule\Plugin\views\filter\CommerceProductVariationFilterPrice.
+  * Definition of Drupal\commerce_ext\Plugin\views\filter\CommerceProductVariationFilterPrice.
   */
 
-namespace Drupal\mymodule\Plugin\views\filter;
+namespace Drupal\commerce_ext\Plugin\views\filter;
 
 use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\Plugin\views\filter\NumericFilter;
