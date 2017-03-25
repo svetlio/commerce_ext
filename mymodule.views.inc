@@ -41,6 +41,16 @@ function mymodule_views_data_alter(&$data) {
       'id' => 'commerce_product_taxonomy_index_tid_depth',
     ),
   );
+  
+  //
+  $data['commerce_product_variation_field_data']['commerce_product_variation_price'] = array(
+    'help' => t('Commerce Product variation Price.'),
+    'real field' => 'price__number',
+    'filter' => array(
+      'title' => t('Commerce Product variation Price'),
+      'id' => 'commerce_product_variation_filter_price',
+    ),
+  );
 }
 
 /**
