@@ -1,8 +1,6 @@
 # commerce_ext
 Some commerce extensions/modifications.
 
-!!! Drupal-8.6.0 and above has a breaking change (taxonomy_update_8502 move table taxonomy_term_hierarchy to taxonomy_term__parent). Last compatible version is 8.5.7.
-
 Module add some missing (taxonomy term depth in commerce_product)
 or not well working (filter price) things for commerce2 for drupal8.
 

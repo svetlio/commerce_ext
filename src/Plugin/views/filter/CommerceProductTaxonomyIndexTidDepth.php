@@ -2,6 +2,7 @@
 
 namespace Drupal\commerce_ext\Plugin\views\filter;
 
+use Drupal\Core\Database\Query\Condition;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\taxonomy\Plugin\views\filter\TaxonomyIndexTid;
 
@@ -71,24 +72,25 @@ class CommerceProductTaxonomyIndexTidDepth extends TaxonomyIndexTid {
     }
 
     // Now build the subqueries.
-    $subquery = db_select('taxonomy_index_commerce_product', 'tn');
-    $subquery->addField('tn', 'product_id');
-    $where = db_or()->condition('tn.tid', $this->value, $operator);
-    $last = "tn";
+    $subquery = db_select('taxonomy_index_commerce_product', 'tcp');
+    $subquery->addField('tcp', 'product_id');
+    $where = (new Condition('OR'))->condition('tcp.tid', $this->value, $operator);
+    $last = "tcp";
 
     if ($this->options['depth'] > 0) {
-      $subquery->leftJoin('taxonomy_term_hierarchy', 'th', "th.tid = tn.tid");
+      $subquery->leftJoin('taxonomy_term__parent', 'th', "th.entity_id = tcp.tid");
       $last = "th";
       foreach (range(1, abs($this->options['depth'])) as $count) {
-        $subquery->leftJoin('taxonomy_term_hierarchy', "th$count", "$last.parent = th$count.tid");
-        $where->condition("th$count.tid", $this->value, $operator);
+        $subquery->leftJoin('taxonomy_term__parent', "th$count", "$last.parent_target_id = th$count.entity_id");
+        $where->condition("th$count.entity_id", $this->value, $operator);
         $last = "th$count";
       }
     }
     elseif ($this->options['depth'] < 0) {
       foreach (range(1, abs($this->options['depth'])) as $count) {
-        $subquery->leftJoin('taxonomy_term_hierarchy', "th$count", "$last.tid = th$count.parent");
-        $where->condition("th$count.tid", $this->value, $operator);
+        $field = $count == 1 ? 'tid' : 'entity_id';
+        $subquery->leftJoin('taxonomy_term__parent', "th$count", "$last.$field = th$count.parent_target_id");
+        $where->condition("th$count.entity_id", $this->value, $operator);
         $last = "th$count";
       }
     }
