@@ -7,3 +7,4 @@ dependencies:
   - taxonomy
   - commerce_product
   - views
+  - system (<=8.5.7)
